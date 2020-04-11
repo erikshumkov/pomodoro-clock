@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif; }
+
+header {
+  position: relative;
+  width: 100%;
+  padding: 25px 0; }
+  header .wrapper {
+    max-width: 1100px;
+    margin: auto; }
+    header .wrapper .nav {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      height: 75px; }
+      header .wrapper .nav .logo-link {
+        text-decoration: none;
+        color: black;
+        font-size: 2.6rem;
+        text-transform: capitalize;
+        font-weight: 700; }
+      header .wrapper .nav .ul-nav {
+        margin-right: 30px; }
+        header .wrapper .nav .ul-nav li {
+          display: inline-block;
+          text-transform: capitalize;
+          font-weight: 400;
+          font-size: 1.1rem; }
+          header .wrapper .nav .ul-nav li a {
+            margin: 0 25px;
+            padding: 15px 3px 5px;
+            color: black;
+            text-decoration: none;
+            transition: 0.3s color ease; }
+            header .wrapper .nav .ul-nav li a:hover {
+              color: #f04242; }
+        header .wrapper .nav .ul-nav li:last-of-type a {
+          margin-right: 0; }
+
+#main {
+  padding: 50px 0; }
+  #main .main-container {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; }
+    #main .main-container .shortcuts h4 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      margin-top: 5.6rem;
+      margin-bottom: 1.5rem; }
+    #main .main-container .shortcuts ul {
+      list-style-type: none; }
+      #main .main-container .shortcuts ul li {
+        font-size: 1.1rem;
+        font-weight: 800;
+        margin-bottom: 0.8rem; }
+        #main .main-container .shortcuts ul li span {
+          font-weight: normal;
+          margin-left: 1rem; }
+      #main .main-container .shortcuts ul li:first-of-type span {
+        margin-left: 1.45rem; }
+    #main .main-container .timer {
+      justify-self: center; }
+      #main .main-container .timer h2 {
+        font-weight: lighter;
+        color: #f04242;
+        font-size: 2.5rem;
+        text-align: center; }
+      #main .main-container .timer #time {
+        display: block;
+        font-size: 6.5rem;
+        font-weight: 700;
+        pointer-events: none;
+        text-align: center; }
+      #main .main-container .timer .buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem; }
+        #main .main-container .timer .buttons button {
+          margin: 0 0.8rem;
+          padding: 0.9rem 1.7rem;
+          border: none;
+          border-radius: 0.3rem;
+          color: white;
+          letter-spacing: 1px;
+          font-size: 1.1rem;
+          outline: 0;
+          cursor: pointer; }
+        #main .main-container .timer .buttons #start {
+          background: #f04242; }
+          #main .main-container .timer .buttons #start:hover {
+            background: #da3737; }
+        #main .main-container .timer .buttons #reset {
+          background: #228119; }
+          #main .main-container .timer .buttons #reset:hover {
+            background: #25911b; }
+    #main .main-container .stats {
+      position: relative;
+      justify-self: right; }
+      #main .main-container .stats h4 {
+        font-size: 1rem;
+        text-transform: uppercase;
+        margin-top: 5.6rem;
+        margin-bottom: 1.5rem; }
+      #main .main-container .stats .list {
+        height: 200px;
+        width: 300px;
+        overflow-y: scroll; }
+        #main .main-container .stats .list ul {
+          list-style: none; }
+          #main .main-container .stats .list ul li {
+            font-size: 1.1rem;
+            margin-bottom: 1rem; }
+      #main .main-container .stats .fader {
+        position: absolute;
+        bottom: 0;
+        height: 7rem;
+        width: 90%;
+        background: linear-gradient(rgba(255, 255, 255, 0) 0%, white 100%); }
+
+.list::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5; }
+
+.list::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5; }
+
+.list::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: black; }
+
+.pulse {
+  animation: pulse 2s linear forwards; }
+
+.pulse2 {
+  animation: pulse2 2s linear forwards; }
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(240, 66, 66, 0.7); }
+  40% {
+    box-shadow: 0 0 0 15px rgba(240, 66, 66, 0); }
+  80% {
+    box-shadow: 0 0 0 15px rgba(240, 66, 66, 0); }
+  100% {
+    box-shadow: 0 0 0 0 rgba(240, 66, 66, 0); } }
+@keyframes pulse2 {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 145, 27, 0.7); }
+  40% {
+    box-shadow: 0 0 0 15px rgba(37, 145, 27, 0); }
+  80% {
+    box-shadow: 0 0 0 15px rgba(37, 145, 27, 0); }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 145, 27, 0); } }
+.overlay {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1; }
+  .overlay .settings {
+    position: fixed;
+    transform: translateY(-100%);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 35rem;
+    padding: 2rem;
+    background: white;
+    z-index: 2; }
+    .overlay .settings .settings-content h2 {
+      font-size: 2rem; }
+    .overlay .settings .settings-content .settings-time {
+      margin-top: 1.2rem; }
+      .overlay .settings .settings-content .settings-time h4 {
+        font-size: 1.5rem;
+        margin-bottom: 0.6rem; }
+      .overlay .settings .settings-content .settings-time .times {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 1.8rem; }
+        .overlay .settings .settings-content .settings-time .times .pomodoro,
+        .overlay .settings .settings-content .settings-time .times .short-break,
+        .overlay .settings .settings-content .settings-time .times .long-break {
+          display: flex;
+          flex-direction: column; }
+          .overlay .settings .settings-content .settings-time .times .pomodoro label,
+          .overlay .settings .settings-content .settings-time .times .short-break label,
+          .overlay .settings .settings-content .settings-time .times .long-break label {
+            font-size: 0.9rem; }
+          .overlay .settings .settings-content .settings-time .times .pomodoro input,
+          .overlay .settings .settings-content .settings-time .times .short-break input,
+          .overlay .settings .settings-content .settings-time .times .long-break input {
+            padding: 0.3rem 0.5rem;
+            border-radius: 3px;
+            border: 1px solid #c2c2c2; }
+    .overlay .settings .settings-content .settings-volume {
+      margin-top: 0.8rem; }
+      .overlay .settings .settings-content .settings-volume h4 {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem; }
+      .overlay .settings .settings-content .settings-volume #volume {
+        width: 100%;
+        overflow-y: hidden;
+        padding: 0.3rem 0.5rem;
+        border-radius: 3px;
+        border: 1px solid #c2c2c2; }
+    .overlay .settings .settings-content .buttons {
+      margin-top: 1.5rem; }
+      .overlay .settings .settings-content .buttons button {
+        padding: 0.9rem 1.7rem;
+        border: none;
+        border-radius: 0.3rem;
+        color: white;
+        letter-spacing: 1px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        background: #f04242; }
+        .overlay .settings .settings-content .buttons button:hover {
+          background: #da3737; }
+      .overlay .settings .settings-content .buttons button#default {
+        margin: 0 0.8rem; }
+
+.overlay.fade {
+  animation: fade 0.3s forwards; }
+
+.overlay.fade2 {
+  animation: fade2 0.3s 0.3s forwards; }
+
+.settings.jump {
+  animation: jump 0.3s 0.3s forwards; }
+
+.settings.jump2 {
+  animation: jump2 0.3s forwards; }
+
+@keyframes fade {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@keyframes fade2 {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+@keyframes jump {
+  0% {
+    transform: translateY(-100%); }
+  100% {
+    transform: translateY(10%); } }
+@keyframes jump2 {
+  0% {
+    transform: translateY(10%); }
+  100% {
+    transform: translateY(-100%); } }
+
+/*# sourceMappingURL=style.css.map */
