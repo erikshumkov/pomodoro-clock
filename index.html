@@ -64,7 +64,19 @@
         </div>
         <div class="timer">
           <h2 id="type">Session</h2>
-          <span id="time"></span>
+          <div class="box-container">
+            <div class="box">
+              <div class="percent">
+                <svg>
+                  <circle cx="70" cy="70" r="70"></circle>
+                  <circle cx="70" cy="70" r="70"></circle>
+                </svg>
+                <div class="number">
+                  <span id="time"></span>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="buttons">
             <button id="start"><i class="fas fa-play"></i></button>
             <button id="reset"><i class="fas fa-redo"></i></button>
@@ -75,7 +87,7 @@
           <h4>Logging previous activity</h4>
           <div class="list">
             <ul>
-              <li>Sessions will be logged here</li>
+              <li class="info">Sessions will be logged here...</li>
             </ul>
           </div>
           <div class="fader"></div>
@@ -113,13 +125,13 @@
             <h4>Set volume</h4>
             <select id="volume" size="5">
               <option value="0">No sound</option>
-              <option value="0.25">25%</option>
-              <option value="0.5" selected>50%</option>
+              <option value="0.25" selected>25%</option>
+              <option value="0.5">50%</option>
               <option value="0.75">75%</option>
               <option value="1.0">100%</option>
             </select>
           </div>
-          <div class="buttons">
+          <div class="settings-buttons">
             <button id="save">Save</button>
             <button id="default">Default</button>
             <button id="test">Test Sound</button>
