@@ -3,11 +3,9 @@
 
 // Make code prettier
 // Add different text depending on what time it is.
-// Switch back title when reset
 
 // Bugs
 // 1 sec delay when timer starts.
-// Fix, favicon error when sound plays
 
 class Timer {
   constructor() {
@@ -34,9 +32,13 @@ class Timer {
   updateDisplay(duration) {
     let minutes = parseInt(this.counter / 60, 10);
     let seconds = parseInt(this.counter % 60, 10);
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    seconds = seconds < 10 ? `0${seconds}` : seconds;
     this.time.innerText = `${minutes}:${seconds}`;
+  }
+  updateProgressCircle() {
+    // Set css variable every second so the circle gets updated / updates the progress bar. 
+    document.body.style.setProperty('--circle-percent', `calc(440 - (440 * (${this.trackTime} - ${this.counter})) / ${this.trackTime})`);
   }
   start() {
     if (!this.isRunning) {
@@ -44,8 +46,8 @@ class Timer {
       this.isRunning = setInterval(() => {
         let minutes = parseInt(this.counter / 60, 10);
         let seconds = parseInt(this.counter % 60, 10);
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+        minutes = minutes < 10 ? `0${minutes}` : minutes;
+        seconds = seconds < 10 ? `0${seconds}` : seconds;
 
         if (this.counter < 0) {
           clearInterval(this.isRunning);
@@ -55,9 +57,10 @@ class Timer {
           this.addToLog(this.trackTime);
           document.title = `Time is up!`;
         } else {
+          this.updateProgressCircle();
           this.counter--;
           this.time.innerText = `${minutes}:${seconds}`;
-          document.title = `(${this.time.innerText}) TomatoTimer`;
+          document.title = `(${this.time.innerText}) Pomodoro Timer`;
         }
       }, 1000);
 
@@ -73,20 +76,21 @@ class Timer {
     this.counter = this.trackTime;
     this.updateDisplay(this.trackTime);
     this.startBtn.firstElementChild.className = "fas fa-play";
+    document.title = `Pomodoro Timer`;
   }
   setDefaults() {
-    document.getElementById("pomodoro").value = 25;
-    document.getElementById("short").value = 5;
-    document.getElementById("long").value = 15;
-    document.getElementById("volume").value = 0.5;
     pomodoroTime = 25;
     shortTime = 5;
     longTime = 15;
+    document.getElementById("pomodoro").value = pomodoroTime;
+    document.getElementById("short").value = shortTime;
+    document.getElementById("long").value = longTime;
+    document.getElementById("volume").value = 0.5;
     timer.clockSound.volume = 0.5;
-    this.pomodoro = 25 * 60;
-    this.shortbreak = 5 * 60;
-    this.longbreak = 15 * 60;
-    this.counter = 25 * 60;
+    this.pomodoro = pomodoroTime * 60;
+    this.shortbreak = shortTime * 60;
+    this.longbreak = longTime * 60;
+    this.counter = pomodoroTime * 60;
   }
   playSound() {
     this.clockSound.play();
@@ -123,34 +127,28 @@ class Timer {
   }
 }
 const timer = new Timer();
-timer.updateDisplay();
 
+timer.updateDisplay();
 
 // Event listeners
 // Click start button
-timer.startBtn.addEventListener("click", function (e) {
-  timer.startBtn.classList.add("pulse");
-  setTimeout(() => timer.startBtn.classList.remove("pulse"), 1500);
+timer.startBtn.addEventListener("click", e => {
   timer.start();
 });
 
 // Click reset button
-timer.resetBtn.addEventListener("click", function (e) {
-  timer.resetBtn.classList.add("pulse2");
-  setTimeout(() => timer.resetBtn.classList.remove("pulse2"), 1500);
+timer.resetBtn.addEventListener("click", e => {
   timer.reset();
 });
 
 // Click test sound button
-timer.testBtn.addEventListener("click", function (e) {
+timer.testBtn.addEventListener("click", e => {
   timer.playSound();
 });
 
 // Start or stop - Space button
-window.addEventListener("keydown", function (e) {
+window.addEventListener("keydown", e => {
   if (e.keyCode === 32) {
-    timer.startBtn.classList.add("pulse");
-    setTimeout(() => timer.startBtn.classList.remove("pulse"), 1500);
     timer.start();
   }
 
@@ -174,8 +172,6 @@ window.addEventListener("keydown", function (e) {
 
   // Reset timer - Alt + R
   if (e.altKey && e.keyCode === 82) {
-    timer.resetBtn.classList.add("pulse2");
-    setTimeout(() => timer.resetBtn.classList.remove("pulse2"), 1500);
     timer.reset();
   }
 });
@@ -235,3 +231,20 @@ timer.defaultBtn.addEventListener("click", () => {
   timer.switchTime(pomodoro);
 });
 
+// Add ripple effect on start, stop and reset buttons.
+const buttons = document.querySelectorAll(".buttons button");
+buttons.forEach(btn => {
+  btn.addEventListener("click", function (e) {
+
+    let x = e.clientX - e.target.offsetLeft;
+    let y = e.clientY - e.target.offsetTop;
+
+    let ripples = document.createElement("span");
+    ripples.className = "ripples";
+    ripples.style.left = x + "px";
+    ripples.style.top = y + "px";
+    this.appendChild(ripples);
+
+    setTimeout(() => ripples.remove(), 1000);
+  })
+})
